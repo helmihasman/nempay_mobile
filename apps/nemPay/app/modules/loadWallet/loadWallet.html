@@ -1,0 +1,45 @@
+<ion-content scroll="false">
+   <div class="login-page text-center">
+      <div class="hero no-header flat hide-on-keyboard-open">
+         <div class="content">
+            <img class="logo" src="images/logo-b.png"/>
+         </div>
+      </div>
+      <div class="list">
+         <label class="item item-input item-md-label" type="text">
+            <select selectclick ng-model="$ctrl.selectedWallet" ng-options="wallet.name group by (wallet.accounts[0].network | toNetworkName) for wallet in $ctrl._storage.wallets">
+               <option value="" disabled selected>Select a wallet</option>
+            </select>
+         </label>
+
+         <label class="item item-input item-md-label" placeholder="Wallet Password" highlight-color="energized" type="password">
+            <input type="password" ng-model="$ctrl.common.password" placeholder="Wallet Password"  ng-keypress="$ctrl.onEnter($event)"/>
+            <div class="highlight highlight-nem"></div>
+         </label>
+      </div>
+      <div class="small-padding">
+         <button class="button button-block button-light border-radius-none"
+                 type="submit" ng-click="$ctrl.login($ctrl.selectedWallet)" ng-disabled="!$ctrl.selectedWallet">
+            {{ 'LOGIN_LOGIN_BUTTON' | translate }}
+         </button>
+      </div>
+
+
+      <div class="small-padding">
+         <a  ui-sref="app.register" class="button button-block button-light button-outline-light border-radius-none" style="display: block;">
+            SIGN UP
+         </a>
+      </div>
+
+
+      <div class="padding">
+         <div class="form-group">
+            <button class="fileUpload btn-import">
+               <span>{{ 'LOGIN_IMPORT_BUTTON' | translate }}</span>
+               <input type="file" accept="*/*" class="upload" multiple='multiple' read-wallet-files="$ctrl.loadWallet($fileContent, $isNCC)" />
+            </button>
+         </div>
+      </div>
+   </div>
+
+</ion-content>
